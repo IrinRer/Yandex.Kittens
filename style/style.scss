@@ -1,0 +1,278 @@
+@mixin border($bor: 2px solid black, $br: 3px) {
+  border-radius: $br;
+  border: $bor;
+}
+
+@mixin for_img($w: 100%, $h: 90%) {
+  width: $w;
+  height: $h;
+}
+
+body {
+  margin: 0;
+}
+
+header {
+  h1 {
+    text-align: center;
+  }
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 2%;
+
+  .rating {
+    @include border;
+    height: 400px;
+  }
+}
+
+.column {
+  @include border;
+  display: flex;
+  flex-direction: column;
+
+  input {
+    display: none;
+  }
+
+  label {
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 20px;
+    cursor: pointer;
+
+    &:focus {
+      background-color: burlywood;
+      font-weight: 900;
+    }
+  }
+}
+
+#chausi:checked + .wrapper1 {
+  display: block;
+}
+
+#abis:checked + .wrapper3 {
+  display: block;
+}
+
+#serval:checked + .wrapper2 {
+  display: block;
+}
+
+#savanna:checked + .wrapper4 {
+  display: block;
+}
+
+.cards {
+  @include border;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(3, auto);
+  gap: 1%;
+  background-color: burlywood;
+
+  input {
+    display: none;
+  }
+
+  .cards__item1 {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 1%;
+    cursor: pointer;
+    position: relative;
+
+    img {
+      @include for_img;
+
+      &:hover + .block__inf {
+        display: block;
+      }
+    }
+  }
+
+  .cards__item2 {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 1%;
+    cursor: pointer;
+    position: relative;
+
+    img {
+      @include for_img;
+
+      &:hover + .block__inf {
+        display: block;
+      }
+    }
+  }
+
+  .cards__item3 {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 1%;
+    cursor: pointer;
+    position: relative;
+
+    img {
+      @include for_img;
+
+      &:hover + .block__inf {
+        display: block;
+      }
+    }
+  }
+
+  .cards__item4 {
+    display: grid;
+    grid-area: "3";
+    grid-template-columns: auto;
+    gap: 1%;
+    cursor: pointer;
+    position: relative;
+
+    img {
+      @include for_img;
+
+      &:hover + .block__inf {
+        display: block;
+      }
+    }
+  }
+}
+
+.block__inf {
+  display: none;
+  opacity: 0.7;
+  filter: alpha(Opacity=70);
+  background-color: cornflowerblue;
+  border: 2px solid rgb(55, 118, 235);
+  position: absolute;
+  top: 65%;
+  width: 30%;
+  color: white;
+
+  p {
+    text-align: center;
+  }
+}
+
+.rating {
+  padding-left: 10%;
+
+  h2 {
+    margin-left: 25%;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.wrapper1,
+.wrapper4,
+.wrapper3,
+.wrapper2,
+.rating__items__decreasing {
+  display: none;
+}
+
+.rating__items__no-order {
+  display: block;
+}
+
+input[type="checkbox"]:checked ~ .rating__items__decreasing {
+  display: block;
+}
+
+input[type="checkbox"]:checked
+  ~ .rating__items__decreasing
+  ~ .rating__items__no-order {
+  display: none;
+}
+
+.rating__items_item1,
+.rating__items_item2,
+.rating__items_item3,
+.rating__items_item4 {
+  .indicator {
+    @include border;
+    height: 25px;
+  }
+}
+
+.rating__items_item1 {
+  .indicator {
+    background-color: cadetblue;
+    width: 150px;
+  }
+}
+
+.rating__items_item2 {
+  .indicator {
+    background-color: forestgreen;
+    width: 120px;
+  }
+}
+
+.rating__items_item3 {
+  .indicator {
+    background-color: yellow;
+    width: 80px;
+  }
+}
+
+.rating__items_item4 {
+  .indicator {
+    background-color: firebrick;
+    width: 50px;
+  }
+}
+
+footer {
+  margin-top: 20px;
+  position: sticky;
+  bottom: 0;
+  background-color: rgb(100, 149, 237, 0.5);
+  .foother__inf {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  }
+}
+
+// aнимация 
+.text-focus-in {
+	-webkit-animation: text-focus-in .5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: text-focus-in .5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: .7;
+  }
+}
+@keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: .7;
+  }
+}
